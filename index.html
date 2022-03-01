@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pagina con vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <div id="izq">
+           <h1 v-if="awesome">{{ text1 }}</h1>
+         <h1  v-else>Esta pagina te ayudara con una lista de los objetivos a cumplir en este semestre</h1>
+         <button v-on:click="toggle" >Objetivos</button> 
+         <img id="im_vu" src="https://codigoonclick.com/wp-content/uploads/2018/12/vuejs-introduccion-1024x430.jpg" >
+          <p>Curso en youtube:</p>
+         <a href="https://www.youtube.com/watch?v=Y4hfWBJ-UzY&t=1024s">Youtube</a>
+         <p>Pagina oficial de Vue js:</p>
+         <a href="https://es.vuejs.org/">Vue js</a>
+         <p>Curso de HTML:</p>
+         <a href="https://www.youtube.com/watch?v=kN1XP-Bef7w">HTML</a>
+         <p>Curso de CSS:</p>
+         <a href="https://www.youtube.com/watch?v=OWKXEJN67FE&t=1516s">CSS</a>
+         <p>Curso de JavaScript:</p>
+         <a href="https://www.youtube.com/watch?v=z95mZVUcJ-E">JavaScript</a>
+         <p>Crea tu propio videojuego:</p>
+         <a href="https://phaser.io/">Phaser.io</a>
+         
+        </div>
+         
+          <div id="der">
+
+            <h1>¿Que es Vue js?</h1>
+
+            <h4>Vue es un framework open source de JavaScript, el cual nos permite construir interfaces de usuarios de una forma muy sencilla. La curva de aprendizaje, desde mi punto de vista, es relativamente baja, claro, debes conocer muy bien JavaScript, saber trabajar con callbacks, promesas, objetos, entre otros temas más.
+
+                Si queremos hacer uso de Vue no será necesario instalar absolutamente nada en nuestra computadora, sí así lo deseamos podemos utilizar este framework mediante un CDN.
+                
+                Vue fue creado por Evan You ex trabajador de Google, quien, es importante mencionar, fue desarrollador Angular. Vue fue lanzado en el año 2014. Aunque inicialmente fue pensado para ser un biblioteca personal, la comunidad hizo que el proyecto creciera a un ritmo impresionante, posicionándolo hoy en día como uno de los Frameworks web más populares, junto con Angular y React. 🖖
+                
+                Una de las características más importantes de Vue es el trabajo con componentes. Un componente Vue, en términos simples, es un elemento el cual se encapsula código reutilizable. Dentro de un componente podremos encontrar etiquetas HTML, estilos de CSS y código JavaScript. Los componentes nos permiten desarrollar proyectos modularizados y fáciles de escalar, si nosotros así lo deseamos podemos reemplazar un componente por otro de una forma muy sencilla, como si de piezas de lego se tratasen.</h4>
+
+
+            <input v-model="newTodo" @keyup.enter="addTodo"></input>
+         <button @click="addTodo">Añadir</button>
+         <ul>
+           <li v-for="todo in todos" :key="todo.id">
+             <input type="checkbox" v-model="todo.done">
+             <span :class="{ done: todo.done }">{{ todo.text }}</span>
+             <button @click="removeTodo(todo)">X</button>
+           </li>
+         </ul>
+         <button @click="hideCompleted = !hideCompleted">
+           {{ hideCompleted ? 'Mostrar todo' : 'Marcar completado' }}
+         </button>  
+          </div>
+
+  <h1 @click="showConfetti" v-if="hideCompleted">🎉 Congratulations!</h1>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+
+       let id = 0;
+
+       new Vue({
+            el: '#app',
+            data: {
+                contador: 0 ,
+                text1: 'Bienvenido a la pagina web',
+                awesome: true,
+                newTodo: '',
+                hideCompleted: false,
+                todos: [
+                    { id: id++, text: 'Aprender HTML', done: false },
+                    { id: id++, text: 'Aprender CSS', done: false },
+                    { id: id++, text: 'Aprender JavaScript', done: false },
+                    { id: id++, text: 'Crear tu primer videojuego', done: false },
+                    { id: id++, text: 'Aprender Vue', done: false }
+                  ]
+            },
+            methods: {
+                 onInput(e) {
+               this.text1 = e.target.value
+              },
+              toggle() {
+                this.awesome = !this.awesome
+              },
+              addTodo() {
+                       this.todos.push({ id: id++, text: this.newTodo, done: false })
+                       this.newTodo = ''
+                },
+               removeTodo(todo) {
+                       this.todos = this.todos.filter((t) => t !== todo)
+             },
+             showConfetti() {
+                  confetti.addConfetti()
+                }
+            }
+        })
+
+    </script>
+
+</body>
+</html>

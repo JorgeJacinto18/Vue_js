@@ -1,0 +1,26 @@
+html {
+    background-color: #f3fbec;
+}
+
+#im_vu {
+   width: 100%;
+   height: auto;
+}
+
+#izq {
+    background-color: #648c01;
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+#der {
+    background-color: #abce00;
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+
+a {
+    background-color: #f3fbec;
+}
