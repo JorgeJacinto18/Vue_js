@@ -8,14 +8,14 @@ html {
 }
 
 #izq {
-    background-color: #648c01;
+    background-color: #3762b1;
     width: 30%;
     height: 100%;
     float: left;
 }
 
 #der {
-    background-color: #abce00;
+    background-color: #5eb2c7;
     width: 70%;
     height: 100%;
     float: right;
